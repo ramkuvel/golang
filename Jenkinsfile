@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 // this will start an executor on a Jenkins agent with the docker label
-//node('docker') {
+node {
   // Setup variables
   // application name will be used in a few places so create a variable and use string interpolation to use it where needed
   String applicationName = "basic-app"
@@ -13,7 +13,8 @@
   // Checkout the code from Github, stages allow Jenkins to visualize the different sections of your build steps in the UI
   stage('Checkout from GitHub') {
     // No special needs here, if your projects relys on submodules the checkout step would need to be different
-    git branch: 'master', url: 'https://github.com/ramkuvel/golang.git'  
+    //git branch: 'master', url: 'https://github.com/ramkuvel/golang.git' 
+	checkout scm
   }
 
   // Start a docker container using the golang:1.8.0-alpine image, mount the current directory to the goPath we specified earlier
@@ -32,4 +33,4 @@
     // Archive the binary files in Jenkins so we can retrieve them later should we need to audit them
     archiveArtifacts artifacts: 'binaries/**', fingerprint: true
   }
-//}
+}
