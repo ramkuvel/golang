@@ -13,7 +13,7 @@
   // Checkout the code from Github, stages allow Jenkins to visualize the different sections of your build steps in the UI
   stage('Checkout from GitHub') {
     // No special needs here, if your projects relys on submodules the checkout step would need to be different
-    checkout scm
+    git branch: 'master', url: 'https://github.com/ramkuvel/golang.git'  
   }
 
   // Start a docker container using the golang:1.8.0-alpine image, mount the current directory to the goPath we specified earlier
