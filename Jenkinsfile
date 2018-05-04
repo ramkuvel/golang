@@ -12,10 +12,7 @@ node {
   }
 
   stage("Create binaries") {
-	mkdir ./build
-	mkdir ./build/golang
-	cd ./build/golang
-	
+	cd ./build	
   }
 
   stage("Run Test") {
